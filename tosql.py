@@ -14,6 +14,7 @@ if not len(argv) >= 2:
 
 # Create database
 db = SqliteDatabase('files.db')
+enc = 'windows-1252'
 
 
 # The model
@@ -34,7 +35,8 @@ class File(Model):
 def on_file(p, n):
     stmp = stat(join(p, n))
     ptmp = splitext(n)
-    new_file = File.create(folder=p, name=ptmp[0], type=ptmp[1].lower(), size=stmp.st_size,
+    new_file = File.create(folder=unicode(p, enc), name=unicode(ptmp[0], enc),
+                           type=unicode(ptmp[1].lower(), enc), size=stmp.st_size,
                            created=datetime.fromtimestamp(stmp.st_ctime),
                            modified=datetime.fromtimestamp(stmp.st_mtime),
                            accessed=datetime.fromtimestamp(stmp.st_atime))
