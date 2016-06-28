@@ -13,11 +13,11 @@ group by drive
 ### Search for PDF files in a specific drive
 ```sql
 select * from file 
-where substr(folder,1,3) = 'x:\' and type = '.pdf' 
+where substr(folder,1,3) = "x:\" and type = ".pdf" 
 ```
 
 ### Get full path names
 ```sql
-select id, (folder || '\' || name || type), created, modified, accessed, size 
+select id, (folder || "\" || name || type), created, modified, accessed, size 
 from file 
 ```
