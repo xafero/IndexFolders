@@ -5,6 +5,7 @@ from sys import argv, exit
 from os import walk, stat
 from os.path import join, splitext
 from datetime import datetime
+from sys import exc_info
 from peewee import *
 
 # Hit exit if not parametrized
@@ -53,4 +54,7 @@ for folder in folders:
     for root, dirs, files in walk(folder):
         print ' *', root, 'has', len(dirs), 'folder(s) and', len(files), 'file(s)...'
         for f in files:
-            on_file(root, f)
+            try:
+                on_file(root, f)
+            except:
+                print ' ! Unexpected error => ', exc_info()[1]
