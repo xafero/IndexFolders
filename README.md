@@ -21,3 +21,8 @@ where substr(folder,1,3) = "x:\" and type = ".pdf"
 select id, (folder || "\" || name || type), created, modified, accessed, size 
 from file 
 ```
+
+### Find out unique file extensions
+```sql
+select distinct substr(type,1,4) from file order by type asc
+```
